@@ -1,10 +1,9 @@
 let startTime, updatedTime, difference, tInterval, running = false, lapTimes = [];
 
-// Bubble Effect
 document.body.addEventListener('click', function (e) {
     const bubble = document.createElement('div');
     bubble.classList.add('bubble');
-    const size = Math.random() * 100 + 50; // Size of the bubble
+    const size = Math.random() * 100 + 50; 
     bubble.style.width = `${size}px`;
     bubble.style.height = `${size}px`;
     bubble.style.left = `${e.clientX - size / 2}px`;
@@ -12,13 +11,11 @@ document.body.addEventListener('click', function (e) {
 
     document.body.appendChild(bubble);
 
-    // Remove bubble after animation ends
     setTimeout(() => {
         bubble.remove();
     }, 2000);
 });
 
-// Toggle Start/Pause Button
 function toggleTimer() {
     const startStopBtn = document.querySelector('#startStopBtn');
     if (running) {
@@ -33,7 +30,6 @@ function toggleTimer() {
     }
 }
 
-// Update Time Display
 function updateTime() {
     updatedTime = new Date().getTime();
     difference = updatedTime - startTime;
@@ -45,7 +41,6 @@ function updateTime() {
     document.querySelector('.time-display').textContent = `${hours}:${minutes}:${seconds}`;
 }
 
-// Reset Timer
 function resetTimer() {
     clearInterval(tInterval);
     running = false;
@@ -54,7 +49,6 @@ function resetTimer() {
     document.querySelector('#startStopBtn').textContent = 'Start';
 }
 
-// Lap Time Function
 function lapTime() {
     if (running) {
         let lapTime = document.querySelector('.time-display').textContent;
@@ -66,20 +60,17 @@ function lapTime() {
     }
 }
 
-// Clear Lap History
 function clearLapHistory() {
     lapTimes = [];
     document.querySelector('#lapList').innerHTML = '';
 }
 
-// Toggle Dark Mode
 function toggleDarkMode() {
     document.body.classList.toggle('dark-mode');
     const themeButton = document.querySelector('#toggle-theme');
     themeButton.textContent = document.body.classList.contains('dark-mode') ? '🌞' : '🌙';
 }
 
-// Event Listeners
 document.querySelector('#startStopBtn').addEventListener('click', toggleTimer);
 document.querySelector('#resetBtn').addEventListener('click', resetTimer);
 document.querySelector('#lapBtn').addEventListener('click', lapTime);
